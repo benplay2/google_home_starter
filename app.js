@@ -203,7 +203,6 @@ app.post("/api/actions/:id", function(req, res) {
   if (req.query.password === process.env.PASS) {
     var foundAction = getAction(req.params.id);
 
-    // Optional On / Off command. If not included, defaults to a toggle.
 	foundAction.trigger();
 
     console.log("postAction " + JSON.stringify(foundAction));
