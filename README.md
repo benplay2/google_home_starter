@@ -28,5 +28,6 @@ To add or edit a switch, go into saveState.json. Use the first switch as a guide
 
 You can serve your own frontend out of the public folder, and it will be accessible on the root route if you make a get request to your IP address. 
 
-More instructions involving creation of a switch and integrating with Google Home:
+---
+_More instructions involving creation of a switch and integrating with Google Home:_
 https://www.instructables.com/id/Google-Home-Raspberry-Pi-Power-Strip/
