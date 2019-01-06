@@ -31,14 +31,14 @@ readableStream.on("end", function() {
 
 // Read actions from actions.json, populate actions array
 var readableStreamA = fs.createReadStream("actions.json");
-var data = "";
+var dataA = "";
 
-readableStreamA.on("data", function(chunk) {
-  data += chunk;
+readableStreamA.on("dataA", function(chunk) {
+  dataA += chunk;
 });
 
 readableStreamA.on("end", function() {
-  var parsed = JSON.parse(data);
+  var parsed = JSON.parse(dataA);
 
   for (i = 0; i < parsed.actions.length; i++) {
     actions.push(new Action(parsed.actions[i]));
