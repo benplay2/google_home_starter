@@ -10,6 +10,9 @@ const app = express();
 // Switch states held in memory
 const switches = [];
 
+// Actions held in memory
+const actions = [];
+
 // Read state from saveState.json, populate switches array
 var readableStream = fs.createReadStream("saveState.json");
 var data = "";
@@ -23,6 +26,22 @@ readableStream.on("end", function() {
 
   for (i = 0; i < parsed.switches.length; i++) {
     switches.push(new Switch(parsed.switches[i]));
+  }
+});
+
+// Read actions from actions.json, populate actions array
+var readableStream = fs.createReadStream("actions.json");
+var data = "";
+
+readableStream.on("data", function(chunk) {
+  data += chunk;
+});
+
+readableStream.on("end", function() {
+  var parsed = JSON.parse(data);
+
+  for (i = 0; i < parsed.actions.length; i++) {
+    actions.push(new Action(parsed.actions[i]));
   }
 });
 
@@ -99,6 +118,13 @@ function getSwitch(string) {
   })[0];
 }
 
+// Action Lookup
+function getAction(string) {
+  return actions.filter(function(element) {
+    return element.id === string;
+  })[0];
+}
+
 // Updates saveState.json
 function saveState() {
   var formattedState = {
@@ -138,6 +164,16 @@ app.get("/api/switches/:id", function(req, res) {
   res.json(found);
 });
 
+// Action Routes for API?
+app.get("/api/actions", function(req, res) {
+  res.send(actions);
+});
+
+app.get("/api/actions/:id", function(req, res) {
+  var found = getAction(req.params.id);
+  res.json(found);
+});
+
 app.post("/api/switches/:id", function(req, res) {
   // For now, uses a simple password query in the url string.
   // Example: POST to localhost:8000/API/switches/sw1?password=test
@@ -155,6 +191,23 @@ app.post("/api/switches/:id", function(req, res) {
     saveState();
     console.log("postSwitch " + JSON.stringify(foundSwitch));
     res.json(foundSwitch);
+  } else {
+    console.log("invalid password");
+    res.send("try again");
+  }
+});
+
+app.post("/api/actions/:id", function(req, res) {
+  // For now, uses a simple password query in the url string.
+  // Example: POST to localhost:8000/API/actions/act1?password=test
+  if (req.query.password === process.env.PASS) {
+    var foundAction = getAction(req.params.id);
+
+    // Optional On / Off command. If not included, defaults to a toggle.
+	foundAction.trigger();
+
+    console.log("postAction " + JSON.stringify(foundAction));
+    res.json(foundAction);
   } else {
     console.log("invalid password");
     res.send("try again");
