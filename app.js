@@ -57,12 +57,39 @@ function Switch(switchValues) {
   this.setState(this.state);
 }
 
+// Action Model
+// Expects an object:{
+// id:"act" + number,
+// name: any name you want to display. Defaults to "action"
+// }
+
+function Action(actionValues) {
+  this.id = actionValues.id || "act";
+  // this.state = actionValues.state || "off";
+  this.name = actionValues.name || "action";
+  
+  this.trigger = function() {
+	var str = triggerString(this.id.slice(2,this.id.length+1));
+    PythonShell.run(str, function(err) {
+      if (!process.env.DEV) {
+        if (err) throw err;
+      }
+    });
+    this.state = state;
+  };
+}
+
 // needed due to a quirk with PythonShell
 function onString(number) {
   return "./public/python/sw" + number + "_on.py";
 }
 function offString(number) {
   return "./public/python/sw" + number + "_off.py";
+}
+
+// For actions
+function triggerString(numberStr) {
+	return "./public/python/act" + numberStr + ".py";
 }
 
 // Switch Lookup
