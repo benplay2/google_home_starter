@@ -27,3 +27,6 @@ You will want to configure the Python files to suit your project's needs.
 To add or edit a switch, go into saveState.json. Use the first switch as a guide, and add a new object to the switches array. 
 
 You can serve your own frontend out of the public folder, and it will be accessible on the root route if you make a get request to your IP address. 
+
+More instructions involving creation of a switch and integrating with Google Home:
+https://www.instructables.com/id/Google-Home-Raspberry-Pi-Power-Strip/
