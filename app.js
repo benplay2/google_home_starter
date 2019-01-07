@@ -84,7 +84,6 @@ function Switch(switchValues) {
 
 function Action(actionValues) {
   this.id = actionValues.id || "act";
-  // this.state = actionValues.state || "off";
   this.name = actionValues.name || "action";
   
   this.trigger = function() {
@@ -94,7 +93,6 @@ function Action(actionValues) {
         if (err) throw err;
       }
     });
-    this.state = state;
   };
 }
 
