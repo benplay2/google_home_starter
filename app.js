@@ -180,6 +180,11 @@ app.post("/api/switches/:id", function(req, res) {
   if (req.query.password === process.env.PASS) {
     var foundSwitch = getSwitch(req.params.id);
 
+	if (typeof foundSwitch === 'undefined'){
+		console.log("Unrecognized switch: " + req.params.id);
+		res.send("Unrecognized switch");
+		return;
+	} 
     // Optional On / Off command. If not included, defaults to a toggle.
 
     if (!(req.query.command === "on" || req.query.command === "off")) {
@@ -202,11 +207,11 @@ app.post("/api/actions/:id", function(req, res) {
   // Example: POST to localhost:8000/API/actions/act1?password=test
   if (req.query.password === process.env.PASS) {
     var foundAction = getAction(req.params.id);
-	if (typeof myVar === 'undefined'){
-console.log("Unrecognized action: " + req.params.id);
-res.send("Unrecognized action");
-return;
-} 
+	if (typeof foundAction === 'undefined'){
+		console.log("Unrecognized action: " + req.params.id);
+		res.send("Unrecognized action");
+		return;
+	} 
 	foundAction.trigger();
 
     console.log("postAction " + JSON.stringify(foundAction));
