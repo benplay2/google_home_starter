@@ -202,7 +202,11 @@ app.post("/api/actions/:id", function(req, res) {
   // Example: POST to localhost:8000/API/actions/act1?password=test
   if (req.query.password === process.env.PASS) {
     var foundAction = getAction(req.params.id);
-
+	if (typeof myVar === 'undefined'){
+console.log("Unrecognized action: " + req.params.id);
+res.send("Unrecognized action");
+return;
+} 
 	foundAction.trigger();
 
     console.log("postAction " + JSON.stringify(foundAction));
