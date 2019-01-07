@@ -33,7 +33,7 @@ readableStream.on("end", function() {
 var readableStreamA = fs.createReadStream("actions.json");
 var dataA = "";
 
-readableStreamA.on("dataA", function(chunk) {
+readableStreamA.on("data", function(chunk) {
   dataA += chunk;
 });
 
