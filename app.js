@@ -87,7 +87,7 @@ function Action(actionValues) {
   this.name = actionValues.name || "action";
   
   this.trigger = function() {
-	var str = triggerString(this.id.slice(2,this.id.length+1));
+	var str = triggerString(this.id.slice(3,this.id.length+1));
     PythonShell.run(str, function(err) {
       if (!process.env.DEV) {
         if (err) throw err;
