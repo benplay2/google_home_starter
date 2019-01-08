@@ -1,3 +1,11 @@
+# TO add to README
+- Creating publicly available webserver (https://www.raspberrypi.org/documentation/remote-access/access-over-Internet/)
+- Capabilities (control anything and as many actions/switches as desired, could have 1 rasp control many devices... as well as raspi's)
+- How to add new switches & actions
+- Update author
+- How to point IFTTT to your raspi
+
+
 ## Updates in this fork
 This repository has been forked from krpeacock to add additional functionality for items that have an unknown state. Example: ring the door bell.
 
