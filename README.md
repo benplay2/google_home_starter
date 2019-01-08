@@ -4,6 +4,7 @@
 - How to add new switches & actions
 - Update author
 - How to point IFTTT to your raspi
+- Bring node.js setup instructions into this readme
 
 
 ## Updates in this fork
