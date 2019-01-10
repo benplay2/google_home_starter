@@ -5,6 +5,7 @@
 - Update author
 - How to point IFTTT to your raspi
 - Bring node.js setup instructions into this readme
+- How to test locally
 
 
 ## Updates in this fork
