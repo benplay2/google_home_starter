@@ -6,6 +6,7 @@
 - How to point IFTTT to your raspi
 - Bring node.js setup instructions into this readme
 - How to test locally
+- How to start automatically on boot
 
 
 ## Updates in this fork
